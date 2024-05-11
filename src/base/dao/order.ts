@@ -33,7 +33,6 @@ export class OrderDAO {
 
   static daoToEntity(orderDao: OrderDAO): OrderEntity {
     const itemsOrder = ItemDAO.daosToEntities(orderDao?.items!)
-
     return new OrderEntity(orderDao.status, orderDao.clientId, orderDao.total,
        orderDao.createdAt, orderDao.updatedAt, itemsOrder, orderDao.id!);       
   }

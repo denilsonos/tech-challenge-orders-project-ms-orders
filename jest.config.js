@@ -2,6 +2,7 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
+  clearMocks: true,
   "reporters": [
     "default",
     ["./node_modules/jest-html-reporter", {

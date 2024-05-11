@@ -36,7 +36,7 @@ export class OrderUseCaseImpl implements OrderUseCase {
     }
 
     async getById(orderId: number): Promise<OrderEntity | null> {
-        const order: OrderDAO | null = await this.orderRepository.getById(orderId)
+        const order: OrderDAO | null = await this.orderRepository.getById(orderId)        
         if (!order?.id) {
             throw new NotFoundException('Order not found!')
         }

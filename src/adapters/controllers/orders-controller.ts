@@ -88,18 +88,13 @@ export class OrderController implements Order {
 
   async get(identifier: any): Promise<OrderDTO> {
     const result = this.validateId(identifier)
-
     if (!result.success) {
       throw new BadRequestException('Validation error!', result.error.issues)
     }
-
+    
     const order = await this.orderUseCase.getById(Number(result.data.id))
-    console.log("order: ", order)
-    if(!order){
-      throw new NotFoundException("Order not found!")
-    }
 
-    return OrderPresenter.EntityToDto(order)
+    return OrderPresenter.EntityToDto(order!)
   }
 
   private getItems(items: any[]){
@@ -116,7 +111,7 @@ export class OrderController implements Order {
     const schema = z.object({
       status: z.enum([OrderStatus.InPreparation, OrderStatus.Finished]),
     })
-
+  
     const statusResult = schema.safeParse(bodyParams)
     const orderIdResult = this.validateId(params)
 
@@ -130,11 +125,7 @@ export class OrderController implements Order {
 
     const order = await this.orderUseCase.getById(Number(orderIdResult.data.id))
 
-    if(!order){
-      throw new NotFoundException("Order not found!")
-    }
-
-    await this.orderUseCase.update(OrderPresenter.EntityToDto(order), statusResult.data.status)
+    await this.orderUseCase.update(OrderPresenter.EntityToDto(order!), statusResult.data.status)
   }
 
   private validateId(bodyParams: unknown){

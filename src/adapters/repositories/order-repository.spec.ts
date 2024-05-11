@@ -1,4 +1,3 @@
-import { SelectQueryBuilder } from "typeorm";
 import { OrderDAO } from "../../base/dao/order"
 import { DbConnectionImpl } from "../../frameworks/database/db-connection-impl";
 import { OrderRepositoryImpl } from "./order-repository";
@@ -53,7 +52,6 @@ describe('OrderRepository', () => {
 
     beforeEach(() => {
         jest.clearAllMocks();
-        jest.resetAllMocks();
     });
 
     it('should save order', async () => {

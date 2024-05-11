@@ -56,7 +56,6 @@ describe('OrderUseCase', () => {
 
     beforeEach(() => {
         jest.clearAllMocks();
-        jest.resetAllMocks();
     });
 
     it('should create order', async () => {
