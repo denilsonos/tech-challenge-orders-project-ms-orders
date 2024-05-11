@@ -46,7 +46,6 @@ describe('ItemRepository', () => {
 
     beforeEach(() => {
         jest.clearAllMocks();
-        jest.resetAllMocks();
     });
 
     it('should save item', async () => {

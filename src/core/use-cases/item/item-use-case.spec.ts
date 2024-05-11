@@ -49,7 +49,6 @@ describe('ItemUseCase', () => {
 
     beforeEach(() => {
         jest.clearAllMocks();
-        jest.resetAllMocks();
     });
 
     it('should create item', async () => {
@@ -104,7 +103,7 @@ describe('ItemUseCase', () => {
         itemDAO.quantity = itemDTO.quantity;
 
         jest.spyOn(itemRepository, 'getByName').mockResolvedValue(itemDAO);
-        
+        jest.spyOn(itemRepository, 'save').mockResolvedValue(new ItemDAO());
         // Act
         try {
             await itemUseCase.create(itemDTO);
@@ -204,6 +203,7 @@ describe('ItemUseCase', () => {
     it('should fail to delete item', async () => {
         // Arrange
         jest.spyOn(itemRepository, 'getById').mockResolvedValue(null);
+        jest.spyOn(itemRepository, 'deleteById').mockResolvedValue();
         
         // Act
         try {
@@ -249,6 +249,7 @@ describe('ItemUseCase', () => {
             Buffer.from('image')
         );
         jest.spyOn(itemRepository, 'getById').mockResolvedValue(null);
+        jest.spyOn(itemRepository, 'update').mockResolvedValue();
         
         // Act
         try {

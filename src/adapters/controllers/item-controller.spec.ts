@@ -53,7 +53,6 @@ describe('ItemController', () => {
 
     beforeEach(() => {
         jest.clearAllMocks();
-        jest.resetAllMocks();
     });
 
     it('should create item', async () => {
