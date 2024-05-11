@@ -4,10 +4,13 @@ import { OrderStatus } from "../../core/entities/enums/order-status";
 import { OrderUseCaseImpl } from "../../core/use-cases/orders/order-use-case";
 import { DbConnectionImpl } from "../../frameworks/database/db-connection-impl";
 import { FakeQueueServiceAdapter } from "../external-services/fake-queue-service/fake-queue-service-adapter";
+import { PreparationClient } from "../external-services/preparation-client/preparation-client";
+import { PreparationClientAdapter } from "../gateways/preparation-client-adapter";
 import { OrderPresenter } from "../presenters/order";
 import { OrderRepositoryImpl } from "../repositories/order-repository";
 import { OrderController } from "./orders-controller";
 import { ItemCategory } from "./validators/enums/item-category";
+import nock from 'nock';
 
 jest.mock('typeorm', () => {
     return {
@@ -49,12 +52,14 @@ describe('OrderController', () => {
     let orderUseCase: OrderUseCaseImpl;
     let orderRepository: OrderRepositoryImpl;
     let queueService: FakeQueueServiceAdapter;
+    let preparationClient: PreparationClientAdapter;
 
     beforeAll(() => {
         database = new DbConnectionImpl();
+        preparationClient = new PreparationClient();
         orderControler = new OrderController(database);
         orderRepository = new OrderRepositoryImpl(database);
-        orderUseCase = new OrderUseCaseImpl(orderRepository, queueService);
+        orderUseCase = new OrderUseCaseImpl(orderRepository, queueService, preparationClient);
     });
     beforeEach(() => {
         jest.clearAllMocks();
@@ -62,6 +67,8 @@ describe('OrderController', () => {
 
     it('should create a new order', async () => {
         // Arrange
+        process.env.PREPARATION_MS_HOST = 'http://localhost:3001/api/v1';
+        nock(process.env.PREPARATION_MS_HOST).post('/orders/1').reply(200)
         const bodyParams = {
             items: [{ itemId: 1, quantity: 1 }],
             clientId: 1
@@ -82,7 +89,7 @@ describe('OrderController', () => {
         jest.spyOn(database.getConnection().getRepository(ItemDAO), 'findOneBy').mockResolvedValue(itemDAO);
         jest.spyOn(database.getConnection().getRepository(ItemDAO), 'findOne').mockResolvedValue(itemDAO);
         jest.spyOn(database.getConnection().getRepository(OrderDAO), 'save').mockResolvedValue(orderDao);
-
+        
         // Act
         const result = await orderControler.create(bodyParams);
 
@@ -186,29 +193,12 @@ describe('OrderController', () => {
         // Arrange
         const identifier = { id: 3 }
 
-        // jest.spyOn(orderUseCase, 'getById').mockRejectedValue(null)
         // Act
         try {
             await orderControler.get(identifier);
         } catch (error) {
             // Assert
-            console.log((error as any).message)
             expect((error as any).message).toEqual("Validation error!");
-        }
-    });
-    
-    it('should fail when id is not found', async () => {
-        // Arrange
-        const identifier = { id: "50" }
-
-        // Act
-        try {
-            await orderControler.get(identifier);
-
-        } catch (error) {
-            // Assert
-            console.log(error)
-            //expect((error as any).message).toEqual("Order not found!");
         }
     });
 

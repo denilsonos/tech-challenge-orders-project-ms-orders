@@ -1,3 +1,4 @@
+import { PreparationClient } from "../../../adapters/external-services/preparation-client/preparation-client";
 import { QueueServiceAdapter } from "../../../adapters/gateways/queue-service-adapter";
 import { OrderRepository } from "../../../adapters/gateways/repositories/order-repository";
 import { OrderUseCase } from "../../../adapters/gateways/use-cases/order-use-case";
@@ -10,7 +11,8 @@ import { OrderEntity } from "../../entities/order";
 export class OrderUseCaseImpl implements OrderUseCase {
 
     constructor(private readonly orderRepository: OrderRepository,
-        private readonly queueService: QueueServiceAdapter) { }
+        private readonly queueService: QueueServiceAdapter,
+        private readonly preparationClient: PreparationClient) { }
 
     async create(order: OrderDTO): Promise<any> {
 
@@ -24,6 +26,7 @@ export class OrderUseCaseImpl implements OrderUseCase {
         orderDAO.items = orderItems
 
         const orderSaved = await this.orderRepository.save(orderDAO)
+        await this.preparationClient.updateStatus(orderSaved.id!, order.status)
         return OrderDAO.daoToEntity(orderSaved);
     }
 
