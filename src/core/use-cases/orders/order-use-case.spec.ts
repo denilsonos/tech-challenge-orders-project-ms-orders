@@ -1,4 +1,6 @@
 import { FakeQueueServiceAdapter } from "../../../adapters/external-services/fake-queue-service/fake-queue-service-adapter";
+import { PreparationClient } from "../../../adapters/external-services/preparation-client/preparation-client";
+import { PreparationClientAdapter } from "../../../adapters/gateways/preparation-client-adapter";
 import { OrderRepositoryImpl } from "../../../adapters/repositories/order-repository";
 import { ItemDAO } from "../../../base/dao/item";
 import { OrderDAO } from "../../../base/dao/order";
@@ -46,12 +48,14 @@ describe('OrderUseCase', () => {
     let orderUseCase: OrderUseCaseImpl;
     let orderRepository: OrderRepositoryImpl;
     let queueService: FakeQueueServiceAdapter;
+    let preparationClient: PreparationClientAdapter;
 
     beforeAll(() => {
         database = new DbConnectionImpl();
+        preparationClient = new PreparationClient();
         orderRepository = new OrderRepositoryImpl(database);
         queueService = new FakeQueueServiceAdapter(database)
-        orderUseCase = new OrderUseCaseImpl(orderRepository, queueService);
+        orderUseCase = new OrderUseCaseImpl(orderRepository, queueService, preparationClient);
     });
 
     beforeEach(() => {

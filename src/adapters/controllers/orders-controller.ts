@@ -18,6 +18,7 @@ import { ItemOrderDTO } from "../../base/dto/item";
 import { OrderStatus } from "../../core/entities/enums/order-status";
 import { QueueServiceAdapter } from "../gateways/queue-service-adapter";
 import { FakeQueueServiceAdapter } from "../external-services/fake-queue-service/fake-queue-service-adapter";
+import { PreparationClient } from "../external-services/preparation-client/preparation-client";
 
 export class OrderController implements Order {
   private orderUseCase: OrderUseCase;
@@ -25,13 +26,15 @@ export class OrderController implements Order {
   private itemRepository: ItemRepository
   private itemUseCase: ItemUseCase
   private queueService: QueueServiceAdapter
+  private preparationClient: PreparationClient
 
   constructor(readonly database: DbConnection) { 
     this.orderRepository = new OrderRepositoryImpl(database)
     this.queueService = new FakeQueueServiceAdapter(database)
     this.itemRepository = new ItemRepositoryImpl(database)
     this.itemUseCase = new ItemUseCaseImpl(this.itemRepository)
-    this.orderUseCase = new OrderUseCaseImpl(this.orderRepository, this.queueService)
+    this.preparationClient = new PreparationClient()
+    this.orderUseCase = new OrderUseCaseImpl(this.orderRepository, this.queueService, this.preparationClient)
   }
 
   async create(bodyParams: unknown): Promise<OrderDTO> {
