@@ -14,6 +14,8 @@ import { getItemRoute } from './routes/items/get-item-route'
 import { updateItemRoute } from './routes/items/update-item-route'
 import { findOrderRoute } from './routes/order/find-order-route'
 import { healthCheckRoute } from './routes/health-check/health-check-router'
+import { updateOrderRoute } from './routes/order/update-order-route'
+import { getOrderRoute } from './routes/order/get-order-route'
 
 export class FastifyAppAdapter implements AppAdapter {
   private readonly app: FastifyInstance
@@ -39,6 +41,8 @@ export class FastifyAppAdapter implements AppAdapter {
     // Order Routes
     this.app.register(createOrderRoute, { prefix: '/api/v1' }) // http://localhost:3000/api/v1/orders
     this.app.register(findOrderRoute, { prefix: '/api/v1' }) // http://localhost:3000/api/v1/orders
+    this.app.register(getOrderRoute, { prefix: '/api/v1' }) // http://localhost:3000/api/v1/orders
+    this.app.register(updateOrderRoute, { prefix: '/api/v1' }) // http://localhost:3000/api/v1/orders
 
     // Item Routes
     this.app.register(createItemRoute, { prefix: '/api/v1' }) // http://localhost:3000/api/v1/items
