@@ -29,7 +29,7 @@ jobs:
     - name: SonarQube Scan
       uses: sonarsource/sonarqube-scan-action@v1
       env:
-        SONAR_TOKEN: ${{ secrets.SONARQUBE_HOST }}
-        SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST_URL }}
+        SONAR_TOKEN: "7541b9240e5c2cef9b33fbe3463a21b423b8fbf9"
+        SONAR_HOST_URL: " https://seven-comics-cough.loca.lt"
   
   
