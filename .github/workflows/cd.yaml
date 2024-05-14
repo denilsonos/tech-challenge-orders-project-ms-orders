@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
 
 env:
-  ECR_REPOSITORY: fiap-app
+  ECR_REPOSITORY: fiap-order-app
   EKS_CLUSTER_NAME: fiap-eks
   AWS_REGION: us-east-1 
     
