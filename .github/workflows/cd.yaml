@@ -45,7 +45,6 @@ jobs:
           echo APP_PORT="${{secrets.APP_PORT}}" >> .env
           echo APP_HOST="${{secrets.APP_HOST}}" >> .env
           echo NODE_ENV="${{secrets.NODE_ENV}}" >> .env
-          echo AWS_URL_COGNITO="${{secrets.AWS_URL_COGNITO}}" >> .env
           echo PREPARATION_MS_HOST="${{secrets.PREPARATION_MS_HOST}}" >> .env
 
       - name: Login to Amazon ECR
