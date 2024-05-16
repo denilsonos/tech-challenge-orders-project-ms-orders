@@ -24,7 +24,7 @@ jobs:
       - name: Checkout Kubernetes config files
         uses: actions/checkout@v2
         with:
-          repository: denilsonos/tech-challenge-orders-project-k8s
+          repository: denilsonos/tech-challenge-orders-project-ms-order-k8
           path: k8s
           token: ${{ secrets.GITHUB_TOKEN }}
 
