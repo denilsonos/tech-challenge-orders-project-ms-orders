@@ -4,6 +4,7 @@ on:
   push:
     branches: [ "main" ]
 
+    
 env:
   ECR_REPOSITORY: fiap-order-app
   EKS_CLUSTER_NAME: fiap-eks
