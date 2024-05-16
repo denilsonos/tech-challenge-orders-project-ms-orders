@@ -37,15 +37,18 @@ jobs:
 
       - name: Create .env file
         run: |
-          echo DB_HOST="${{secrets.DB_HOST}}" > .env
-          echo DB_USER="${{secrets.DB_USER}}" >> .env
-          echo DB_PASSWORD="${{secrets.DB_PASSWORD}}" >> .env
-          echo DB_NAME_ORDERS="${{secrets.DB_NAME}}" >> .env
-          echo DB_PORT="${{secrets.DB_PORT}}" >> .env
+          echo NODE_ENV="${{secrets.NODE_ENV}}" >> .env
           echo APP_PORT="${{secrets.APP_PORT}}" >> .env
           echo APP_HOST="${{secrets.APP_HOST}}" >> .env
-          echo NODE_ENV="${{secrets.NODE_ENV}}" >> .env
-          echo PREPARATION_MS_HOST="${{secrets.PREPARATION_MS_HOST}}" >> .env
+          echo DB_HOST="${{secrets.DB_HOST}}" > .env
+          echo DB_USER="${{secrets.DB_USER}}" >> .env
+          echo DB_PORT="${{secrets.DB_PORT}}" >> .env
+          echo DB_PASSWORD="${{secrets.DB_PASSWORD}}" >> .env
+          echo DB_NAME_PREPARATION="${{secrets.DB_NAME_PREPARATION}}" >> .env
+          echo DB_NAME_PAYMENTS="${{secrets.DB_NAME_PAYMENTS}}" >> .env
+          echo DB_NAME_ORDERS="${{secrets.DB_NAME_ORDERS}}" >> .env		  
+          echo ORDER_MS_HOST="${{secrets.ORDER_MS_HOST}}" >> .env
+          echo PREPARATION_MS_HOST="${{secrets.PREPARATION_MS_HOST}}" >> .env		
 
       - name: Login to Amazon ECR
         id: login-ecr
