@@ -490,6 +490,7 @@ export const getOrderSwagger = () => ({
                     order: {
                         type: 'object',
                         properties: {
+                            id: { type: 'number' },
                             orderId: { type: 'number' },
                             status: { type: 'string' },
                             clientId: { type: 'number' },

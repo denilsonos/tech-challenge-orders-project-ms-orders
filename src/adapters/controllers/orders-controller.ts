@@ -112,7 +112,7 @@ export class OrderController implements Order {
 
   async update(bodyParams: any, params: unknown): Promise<void> {
     const schema = z.object({
-      status: z.enum([OrderStatus.InPreparation, OrderStatus.Finished]),
+      status: z.enum([OrderStatus.InPreparation, OrderStatus.Finished, OrderStatus.PendingPayment]),
     })
   
     const statusResult = schema.safeParse(bodyParams)
