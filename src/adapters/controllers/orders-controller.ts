@@ -97,8 +97,6 @@ export class OrderController implements Order {
     
     const order = await this.orderUseCase.getById(Number(result.data.id))
 
-    console.log('ordero111111er', OrderPresenter.EntityToDto(order!))
-
     return OrderPresenter.EntityToDto(order!)
   }
 
