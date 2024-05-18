@@ -97,6 +97,8 @@ export class OrderController implements Order {
     
     const order = await this.orderUseCase.getById(Number(result.data.id))
 
+    console.log('ordero111111er', OrderPresenter.EntityToDto(order!))
+
     return OrderPresenter.EntityToDto(order!)
   }
 
@@ -112,7 +114,7 @@ export class OrderController implements Order {
 
   async update(bodyParams: any, params: unknown): Promise<void> {
     const schema = z.object({
-      status: z.enum([OrderStatus.InPreparation, OrderStatus.Finished]),
+      status: z.enum([OrderStatus.InPreparation, OrderStatus.Finished, OrderStatus.PendingPayment]),
     })
   
     const statusResult = schema.safeParse(bodyParams)
