@@ -26,7 +26,7 @@ export class OrderUseCaseImpl implements OrderUseCase {
         orderDAO.items = orderItems
 
         const orderSaved = await this.orderRepository.save(orderDAO)
-        await this.preparationClient.updateStatus(orderSaved.id!, order.status)
+        await this.preparationClient.createOrderPreparation(orderSaved.id!, order.status)
         return OrderDAO.daoToEntity(orderSaved);
     }
 
