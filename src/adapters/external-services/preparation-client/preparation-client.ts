@@ -7,8 +7,9 @@ export class PreparationClient implements PreparationClientAdapter {
   async createOrderPreparation(orderId: number, status: string): Promise<void> {
 
     const basePath = process.env.PREPARATION_MS_HOST;
-    await axios.post(`${basePath}/ms-orders/api/v1/orders`, {
-       data: JSON.stringify({ idOrder: orderId,
+    await axios.post(`${basePath}/ms-preparation/api/v1/orders`, {
+       data: JSON.stringify({ 
+         idOrder: orderId,
          status: status,
          createdAt: new Date()}) 
       })

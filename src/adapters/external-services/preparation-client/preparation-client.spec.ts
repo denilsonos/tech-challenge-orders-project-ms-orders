@@ -20,7 +20,7 @@ describe('OrderClient', () => {
     describe('Create Preparation', () => {
        it('should create preparation with success', async () => {
             const url = process.env.PREPARATION_MS_HOST as string;
-            nock(url).post('/ms-orders/api/v1/orders').reply(201)
+            nock(url).post('/ms-preparation/api/v1/orders').reply(201)
 
             await preparationClient.createOrderPreparation(1, 'status')     
         });
