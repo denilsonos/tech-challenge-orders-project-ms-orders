@@ -112,11 +112,14 @@ export class OrderController implements Order {
 
   async update(bodyParams: any, params: unknown): Promise<void> {
     const schema = z.object({
-      status: z.enum([OrderStatus.InPreparation, OrderStatus.Finished, OrderStatus.PendingPayment, OrderStatus.Received]),
+      status: z.nativeEnum(OrderStatus),
     })
   
     const statusResult = schema.safeParse(bodyParams)
     const orderIdResult = this.validateId(params)
+
+    console.log("body:"+JSON.stringify(bodyParams))
+    console.log("path:"+JSON.stringify(params))
 
     if (!statusResult.success) {
       throw new BadRequestException('Validation error!', statusResult.error.issues)
