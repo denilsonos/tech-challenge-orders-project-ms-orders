@@ -13,7 +13,7 @@ export class PreparationClient implements PreparationClientAdapter {
          status: status,
          createdAt: new Date()}) 
       })
-      .then(response => `Status Code - ${response.status}`)
-      .catch(error => `Error Code - ${error.status}`);
+      .then(response => console.log("response status:" + response))
+      .catch(error => console.log("error status:" + error));
   }
 }
