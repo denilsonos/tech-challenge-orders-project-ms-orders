@@ -32,7 +32,7 @@ export class FastifyAppAdapter implements AppAdapter {
   public async init(): Promise<void> {
     this.app.register(multipart)
     this.app.register(cors, {
-      origin: [`http://localhost:3333`],
+      origin: [`*`],
     })
 
     this.app.register(fastifySwagger, swaggerOptions);
