@@ -6,8 +6,6 @@ import { DbConnectionImpl } from '../../../database/db-connection-impl'
 import { AuthorizationService } from '../../../middlewares/authentication'
 
 export const updateOrderRoute = async (fastify: FastifyInstance) => {
-  const authorizationService = new AuthorizationService();
-  fastify.addHook('preHandler', authorizationService.authenticate);
   
   fastify.patch(
     '/orders/:id',
