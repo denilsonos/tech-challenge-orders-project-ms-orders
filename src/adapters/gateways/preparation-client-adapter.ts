@@ -1,3 +1,3 @@
 export interface PreparationClientAdapter {
-    updateStatus(idOrder: number, status: string): Promise<void>
+    createOrderPreparation(idOrder: number, status: string): Promise<void>
 }

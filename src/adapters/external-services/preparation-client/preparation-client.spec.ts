@@ -8,7 +8,7 @@ describe('OrderClient', () => {
     let preparationClient: PreparationClient;
     
     beforeAll(() => {
-        process.env.PREPARATION_MS_HOST = "http://localhost/test"
+        process.env.PREPARATION_MS_HOST = "http://localhost"
         preparationClient = new PreparationClient();
     });
 
@@ -17,12 +17,12 @@ describe('OrderClient', () => {
         
     });
 
-    describe('updateStatus', () => {
-       it('should update status with success', async () => {
+    describe('Create Preparation', () => {
+       it('should create preparation with success', async () => {
             const url = process.env.PREPARATION_MS_HOST as string;
-            nock(url).post('/orders/1').reply(200)
+            nock(url).post('/ms-orders/api/v1/orders').reply(201)
 
-            await preparationClient.updateStatus(1, 'status')     
+            await preparationClient.createOrderPreparation(1, 'status')     
         });
     });
 })
