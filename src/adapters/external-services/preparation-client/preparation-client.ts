@@ -10,8 +10,8 @@ export class PreparationClient implements PreparationClientAdapter {
     const basePath = process.env.PREPARATION_MS_HOST;
     await axios.post(`${basePath}/ms-preparation/api/v1/orders`, {
        data: JSON.stringify({ 
-         idOrder: orderId,
-         status: OrderStatus.Created,
+         idOrder: Number(orderId),
+         status: String(OrderStatus.Created),
          createdAt: new Date()}) 
       })
       .then(response => console.log("response status:" + response))
