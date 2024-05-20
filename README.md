@@ -73,7 +73,7 @@ Para a execução indicamos criar um item e um pedido afim de ter massas de test
 http://localhost:3000/docs
 ## Postman
 
-[Collection para teste](https://github.com/denilsonos/tech-challenge-orders-project/blob/main/Tech%20Challenge%20Collection.postman_collection.json)
+[Collection para teste](https://github.com/denilsonos/tech-challenge-orders-project-ms-orders/blob/main/MS%20Orders.postman_collection.json)
 
 ## Evidencia de cobertura de testes
 
