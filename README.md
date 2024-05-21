@@ -22,11 +22,10 @@ O desenvolvimento se deu por meio de Pair programming, onde os atores e ouvintes
 ## Arquitetura
 
 ### Video explicativo
-[Video explicativo - pendente]()
+[Video explicativo](https://youtu.be/5ypeCH3Io_s)
 
 ### Desenho de Arquitetura
-
-![Arquitetura-ms](https://github.com/denilsonos/tech-challenge-orders-project-ms-orders/assets/23120172/03605444-399c-4d8c-b4a4-af06b4d719ad)
+![Arquitetura-ms](https://github.com/denilsonos/tech-challenge-orders-project-ms-preparation/assets/23120172/de516181-49da-4623-ac23-50ca71c7bd3b)
 
 ## Deploy
 
