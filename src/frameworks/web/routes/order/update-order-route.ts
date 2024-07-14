@@ -3,7 +3,6 @@ import { OrderController } from '../../../../adapters/controllers/orders-control
 import { Exception } from '../../../../core/entities/exceptions'
 import { updateOrderSwagger } from '../../swagger'
 import { DbConnectionImpl } from '../../../database/db-connection-impl'
-import { AuthorizationService } from '../../../middlewares/authentication'
 
 export const updateOrderRoute = async (fastify: FastifyInstance) => {
   
