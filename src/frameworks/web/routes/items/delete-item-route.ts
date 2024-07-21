@@ -3,12 +3,8 @@ import { Exception } from '../../../../core/entities/exceptions'
 import { deleteItemSwagger } from '../../swagger'
 import { ItemController } from '../../../../adapters/controllers/item-controller'
 import { DbConnectionImpl } from '../../../database/db-connection-impl'
-// import { AuthorizationService } from '../../../middlewares/authentication'
 
-export const deleteItemRoute = async (fastify: FastifyInstance) => {
-  // const authorizationService = new AuthorizationService();
-  // fastify.addHook('preHandler', authorizationService.authenticate);
-  
+export const deleteItemRoute = async (fastify: FastifyInstance) => {  
   fastify.delete(
     '/items/:id',
     deleteItemSwagger(),

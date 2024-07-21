@@ -3,12 +3,8 @@ import { createItemSwagger } from '../../swagger'
 import { Exception } from '../../../../core/entities/exceptions'
 import { ItemController } from '../../../../adapters/controllers/item-controller'
 import { DbConnectionImpl } from '../../../database/db-connection-impl'
-// import { AuthorizationService } from '../../../middlewares/authentication'
 
-export const createItemRoute = async (fastify: FastifyInstance) => {
-  // const authorizationService = new AuthorizationService();
-  // fastify.addHook('preHandler', authorizationService.authenticate);
-  
+export const createItemRoute = async (fastify: FastifyInstance) => { 
   fastify.post(
     '/items',
     createItemSwagger(),
