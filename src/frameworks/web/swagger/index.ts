@@ -706,3 +706,90 @@ export const healthCheck = () => ({
         }
     }
 })
+
+
+export const createCustomerSwagger = () => ({
+    schema: {
+        tags: ['Customers'],
+        body: {
+            type: 'object',
+            properties: {
+                cpf: { type: 'string' },
+                email: { type: 'string' },
+                name: { type: 'string' },
+                address: { type: 'string' },
+                phone: { type: 'string' },
+            }
+        },
+        response: {
+            201: {
+                type: 'object',
+                properties: {
+                    message: { type: 'string' },
+                    customerId: { type: 'number' }
+                }
+            },
+            400: {
+                type: 'object',
+                properties: {
+                    message: { type: 'string' },
+                    'issues': {
+                        type: 'array',
+                        items: {
+                            type: 'object',
+                            properties: {
+                                fatal: { type: 'boolean' },
+                                message: { type: 'string' },
+                            }
+                        }
+                    },
+                }
+            },
+            404: {
+                type: 'object',
+                properties: {
+                    message: { type: 'string' },
+                }
+            }
+        }
+    }
+})
+
+export const deleteCustomerSwagger = () => ({
+    schema: {
+        tags: ['Customers'],
+        params: {
+            id: { type: 'number' },
+        },
+        response: {
+            200: {
+                type: 'object',
+                properties: {
+                    message: { type: 'string' },
+                }
+            },
+            400: {
+                type: 'object',
+                properties: {
+                    message: { type: 'string' },
+                    'issues': {
+                        type: 'array',
+                        items: {
+                            type: 'object',
+                            properties: {
+                                fatal: { type: 'boolean' },
+                                message: { type: 'string' },
+                            }
+                        }
+                    },
+                }
+            },
+            404: {
+                type: 'object',
+                properties: {
+                    message: { type: 'string' },
+                }
+            }
+        }
+    }
+})

@@ -16,6 +16,8 @@ import { findOrderRoute } from './routes/order/find-order-route'
 import { healthCheckRoute } from './routes/health-check/health-check-router'
 import { updateOrderRoute } from './routes/order/update-order-route'
 import { getOrderRoute } from './routes/order/get-order-route'
+import { createCustomerRoute } from './routes/customer/create-customer-route'
+import { deleteCustomerRoute } from './routes/customer/delete-customer-route'
 
 export class FastifyAppAdapter implements AppAdapter {
   private readonly app: FastifyInstance
@@ -51,8 +53,11 @@ export class FastifyAppAdapter implements AppAdapter {
     this.app.register(updateItemRoute, { prefix: '/api/v1' }) // http://localhost:3000/api/v1/items/:id
     this.app.register(deleteItemRoute, { prefix: '/api/v1' }) // http://localhost:3000/api/v1/items/:id
 
-    // Health Check Route
+    // Customer Routes
+    this.app.register(createCustomerRoute, { prefix: '/api/v1' }) // http://localhost:3000/api/v1/customers
+    this.app.register(deleteCustomerRoute, { prefix: '/api/v1' }) // http://localhost:3000/api/v1/customers/:id
 
+    // Health Check Route
     this.app.register(healthCheckRoute, { prefix: '/api/v1'}) // http://localhost:3000/api/v1/health-check
 
     await this.app
