@@ -4,6 +4,7 @@ import { OrmAdapter } from '../../adapters/gateways/orm-adapter'
 import { OrderDAO } from '../../base/dao/order'
 import { ItemDAO } from '../../base/dao/item'
 import { FakeQueue } from '../../adapters/external-services/fake-queue-service/fake-queue-service-adapter'
+import { CustomerDAO } from '../../base/dao/customer'
 
 export class MysqlOrmAdapter implements OrmAdapter {
   private static instance: MysqlOrmAdapter | undefined // eslint-disable-line no-use-before-define
@@ -47,7 +48,8 @@ export class MysqlOrmAdapter implements OrmAdapter {
       entities: [
         OrderDAO,
         ItemDAO,
-        FakeQueue
+        FakeQueue,
+        CustomerDAO
       ],
       migrations: [],
       subscribers: [],
