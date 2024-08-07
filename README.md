@@ -13,7 +13,6 @@ TypeScript: 5.2.2
 Node: 20.2.1
 ![Linkedin: HelioSoares](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 
-
 ## Documentação
 
 [Relatório de Impacto à Proteção de Dados Pessoais](https://docs.google.com/document/d/1tj5SuWZX0O2eXeLHcBnM3qHz9IN51dWT/edit?usp=sharing&ouid=118087082707471708573&rtpof=true&sd=true)
